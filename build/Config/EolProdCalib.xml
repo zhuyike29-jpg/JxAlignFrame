@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CfgEolCCDCalib xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <filename />
+  <M1>1</M1>
+  <M2>0</M2>
+  <M3>0</M3>
+  <M4>1</M4>
+  <M5>0</M5>
+  <M6>0</M6>
+  <T1>0</T1>
+  <T2>0</T2>
+  <T3>0</T3>
+</CfgEolCCDCalib>

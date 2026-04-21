@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CfgCCDCalibLoad xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <filename>Config/cfg_cam1calib.xml</filename>
+  <M1>0.010400665430618797</M1>
+  <M2>-0.017485824922716761</M2>
+  <M3>-0.017560990427610911</M3>
+  <M4>-0.010456763670977549</M4>
+  <M5>98.350221277745021</M5>
+  <M6>96.766496147852422</M6>
+  <T1>94.282969301078026</T1>
+  <T2>65.166076068895009</T2>
+  <T3>9.3053500389027182</T3>
+  <Mat_Cam_Pos>0</Mat_Cam_Pos>
+  <Mat_Cam_Dx>0</Mat_Cam_Dx>
+  <Mat_Cam_Dy>0</Mat_Cam_Dy>
+</CfgCCDCalibLoad>

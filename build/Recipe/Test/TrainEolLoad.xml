@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CfgTrainEolLoad xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <filename />
+  <modTool1X>0</modTool1X>
+  <modTool1Y>0</modTool1Y>
+  <modTool1R>0</modTool1R>
+  <modTool2X>0</modTool2X>
+  <modTool2Y>0</modTool2Y>
+  <modTool2R>0</modTool2R>
+  <modTargetHX>0</modTargetHX>
+  <modTargetHY>0</modTargetHY>
+  <modTargetHR>0</modTargetHR>
+</CfgTrainEolLoad>
