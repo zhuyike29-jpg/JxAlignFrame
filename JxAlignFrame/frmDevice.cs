@@ -18,8 +18,8 @@ namespace JxAlignVision
 {
     public partial class frmDevice : UIForm
     {
-        bool thread_run = true;
         BaseHikCamera _cam;
+        Thread _plcListenThread ;
 
         public frmDevice()
         {
@@ -30,8 +30,8 @@ namespace JxAlignVision
         {
             ModLogger.Record(() => {
                 if (Device.WpcCam1.IsOpen()) btnReadCamParam_Click(null, null);
-                thread_run = true;
-                ModLogger.RecordThread(() => { PlcListenThread(); });
+                _plcListenThread = new Thread(PlcListenThread);
+                _plcListenThread.Start();
                 cboCam.SelectedIndex = 0;
             });
         }
@@ -39,7 +39,7 @@ namespace JxAlignVision
         private void Frm_Device_FormClosing(object sender, FormClosingEventArgs e)
         {
             ModLogger.Record(() => {
-                thread_run = false;
+                _plcListenThread.Abort();
                 ckb_AutoCam1Grabbing.Checked = false;
                 Thread.Sleep(100);
                 _cam.OnNewImage -= Cam1_OnNewImage;
@@ -96,7 +96,7 @@ namespace JxAlignVision
 
         void PlcListenThread()
         {
-            while (thread_run)
+            while (true)
             {
                 Thread.Sleep(100);
                 //WPC PLC

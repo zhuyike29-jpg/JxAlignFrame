@@ -159,11 +159,11 @@
       <DependentUpon>frmEolCSDebug.cs</DependentUpon>
     </Compile>
     <Compile Include="Fun3EolReadCodeSign\EolReadCodeSignPlc.cs" />
-    <Compile Include="Base\VisionBase\MyVision.cs" />
+    <Compile Include="MyVision.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Base\VisionBase\ModCognexVision.cs" />
-    <Compile Include="Base\VisionBase\ModHikCamera.cs" />
+    <Compile Include="Base\ModCognexVision.cs" />
+    <Compile Include="Base\ModHikCamera.cs" />
     <Compile Include="Fun1ReadCodeSign\WpcReadCodeSignPlc.cs" />
     <Compile Include="Fun1ReadCodeSign\CfgWpcTrainSignReadCode.cs" />
     <Compile Include="Fun1ReadCodeSign\frmWpcDebug.cs">

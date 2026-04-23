@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <CfgTrainEolLoad xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <filename />
+  <filename>Recipe/Test/TrainEolLoad.xml</filename>
   <modTool1X>0</modTool1X>
   <modTool1Y>0</modTool1Y>
   <modTool1R>0</modTool1R>

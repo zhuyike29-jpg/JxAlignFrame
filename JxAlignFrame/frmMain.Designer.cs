@@ -35,21 +35,21 @@ namespace JxAlignVision
             this.uiStatusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel6 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel8 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblWpcPlc = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.status_Plc = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblEolLoadPlc = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel10 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel9 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblEolPlc = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel7 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.statusCam1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblWpcCam1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel11 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblWpcCam2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel13 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel14 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblEolProdCam = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel16 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel12 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblEolJigCam = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripStatusLabel15 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tsslblEolCsCam = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.Status_User = new System.Windows.Forms.ToolStripStatusLabel();
             this.uiMenuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -69,6 +69,11 @@ namespace JxAlignVision
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.ucDisWpc1 = new JxAlignVision.ucDisplay();
+            this.ucDisWpc2 = new JxAlignVision.ucDisplay();
+            this.ucDisEolProd = new JxAlignVision.ucDisplay();
+            this.ucDisEolJig = new JxAlignVision.ucDisplay();
+            this.ucDisEolCs = new JxAlignVision.ucDisplay();
             this.groupBox3 = new Sunny.UI.UIGroupBox();
             this.rtxtLog = new System.Windows.Forms.RichTextBox();
             this.groupBox4 = new Sunny.UI.UIGroupBox();
@@ -81,11 +86,6 @@ namespace JxAlignVision
             this.label2 = new Sunny.UI.UILabel();
             this.label1 = new Sunny.UI.UILabel();
             this.lb_vision = new Sunny.UI.UILabel();
-            this.ucDisWpc1 = new JxAlignVision.ucDisplay();
-            this.ucDisWpc2 = new JxAlignVision.ucDisplay();
-            this.ucDisEolProd = new JxAlignVision.ucDisplay();
-            this.ucDisEolJig = new JxAlignVision.ucDisplay();
-            this.ucDisEolCs = new JxAlignVision.ucDisplay();
             this.uiStatusStrip1.SuspendLayout();
             this.uiMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -104,21 +104,21 @@ namespace JxAlignVision
             this.uiStatusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel6,
             this.toolStripStatusLabel2,
-            this.toolStripStatusLabel8,
+            this.tsslblWpcPlc,
             this.toolStripStatusLabel1,
-            this.status_Plc,
+            this.tsslblEolLoadPlc,
             this.toolStripStatusLabel10,
-            this.toolStripStatusLabel9,
+            this.tsslblEolPlc,
             this.toolStripStatusLabel7,
-            this.statusCam1,
+            this.tsslblWpcCam1,
             this.toolStripStatusLabel11,
-            this.toolStripStatusLabel5,
+            this.tsslblWpcCam2,
             this.toolStripStatusLabel13,
-            this.toolStripStatusLabel14,
+            this.tsslblEolProdCam,
             this.toolStripStatusLabel16,
-            this.toolStripStatusLabel12,
+            this.tsslblEolJigCam,
             this.toolStripStatusLabel3,
-            this.toolStripStatusLabel15,
+            this.tsslblEolCsCam,
             this.toolStripStatusLabel4,
             this.Status_User});
             this.uiStatusStrip1.Location = new System.Drawing.Point(0, 706);
@@ -139,14 +139,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel2.Size = new System.Drawing.Size(55, 27);
             this.toolStripStatusLabel2.Text = "WPC Plc";
             // 
-            // toolStripStatusLabel8
+            // tsslblWpcPlc
             // 
-            this.toolStripStatusLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.toolStripStatusLabel8.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripStatusLabel8.Name = "toolStripStatusLabel8";
-            this.toolStripStatusLabel8.Size = new System.Drawing.Size(24, 27);
-            this.toolStripStatusLabel8.Text = "●";
-            this.toolStripStatusLabel8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblWpcPlc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblWpcPlc.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblWpcPlc.Name = "tsslblWpcPlc";
+            this.tsslblWpcPlc.Size = new System.Drawing.Size(24, 27);
+            this.tsslblWpcPlc.Text = "●";
+            this.tsslblWpcPlc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel1
             // 
@@ -154,14 +154,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(51, 27);
             this.toolStripStatusLabel1.Text = "EOL Plc";
             // 
-            // status_Plc
+            // tsslblEolLoadPlc
             // 
-            this.status_Plc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.status_Plc.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.status_Plc.Name = "status_Plc";
-            this.status_Plc.Size = new System.Drawing.Size(24, 27);
-            this.status_Plc.Text = "●";
-            this.status_Plc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblEolLoadPlc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblEolLoadPlc.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblEolLoadPlc.Name = "tsslblEolLoadPlc";
+            this.tsslblEolLoadPlc.Size = new System.Drawing.Size(24, 27);
+            this.tsslblEolLoadPlc.Text = "●";
+            this.tsslblEolLoadPlc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel10
             // 
@@ -169,14 +169,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel10.Size = new System.Drawing.Size(75, 27);
             this.toolStripStatusLabel10.Text = "EOL圆盘 Plc";
             // 
-            // toolStripStatusLabel9
+            // tsslblEolPlc
             // 
-            this.toolStripStatusLabel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.toolStripStatusLabel9.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripStatusLabel9.Name = "toolStripStatusLabel9";
-            this.toolStripStatusLabel9.Size = new System.Drawing.Size(24, 27);
-            this.toolStripStatusLabel9.Text = "●";
-            this.toolStripStatusLabel9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblEolPlc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblEolPlc.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblEolPlc.Name = "tsslblEolPlc";
+            this.tsslblEolPlc.Size = new System.Drawing.Size(24, 27);
+            this.tsslblEolPlc.Text = "●";
+            this.tsslblEolPlc.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel7
             // 
@@ -184,14 +184,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel7.Size = new System.Drawing.Size(70, 27);
             this.toolStripStatusLabel7.Text = "WPC1 相机";
             // 
-            // statusCam1
+            // tsslblWpcCam1
             // 
-            this.statusCam1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.statusCam1.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.statusCam1.Name = "statusCam1";
-            this.statusCam1.Size = new System.Drawing.Size(24, 27);
-            this.statusCam1.Text = "●";
-            this.statusCam1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblWpcCam1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblWpcCam1.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblWpcCam1.Name = "tsslblWpcCam1";
+            this.tsslblWpcCam1.Size = new System.Drawing.Size(24, 27);
+            this.tsslblWpcCam1.Text = "●";
+            this.tsslblWpcCam1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel11
             // 
@@ -199,14 +199,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel11.Size = new System.Drawing.Size(70, 27);
             this.toolStripStatusLabel11.Text = "WPC2 相机";
             // 
-            // toolStripStatusLabel5
+            // tsslblWpcCam2
             // 
-            this.toolStripStatusLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.toolStripStatusLabel5.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
-            this.toolStripStatusLabel5.Size = new System.Drawing.Size(24, 27);
-            this.toolStripStatusLabel5.Text = "●";
-            this.toolStripStatusLabel5.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblWpcCam2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblWpcCam2.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblWpcCam2.Name = "tsslblWpcCam2";
+            this.tsslblWpcCam2.Size = new System.Drawing.Size(24, 27);
+            this.tsslblWpcCam2.Text = "●";
+            this.tsslblWpcCam2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel13
             // 
@@ -214,14 +214,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel13.Size = new System.Drawing.Size(83, 27);
             this.toolStripStatusLabel13.Text = "EOL产品 相机";
             // 
-            // toolStripStatusLabel14
+            // tsslblEolProdCam
             // 
-            this.toolStripStatusLabel14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.toolStripStatusLabel14.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripStatusLabel14.Name = "toolStripStatusLabel14";
-            this.toolStripStatusLabel14.Size = new System.Drawing.Size(24, 27);
-            this.toolStripStatusLabel14.Text = "●";
-            this.toolStripStatusLabel14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblEolProdCam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblEolProdCam.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblEolProdCam.Name = "tsslblEolProdCam";
+            this.tsslblEolProdCam.Size = new System.Drawing.Size(24, 27);
+            this.tsslblEolProdCam.Text = "●";
+            this.tsslblEolProdCam.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel16
             // 
@@ -229,14 +229,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel16.Size = new System.Drawing.Size(83, 27);
             this.toolStripStatusLabel16.Text = "EOL治具 相机";
             // 
-            // toolStripStatusLabel12
+            // tsslblEolJigCam
             // 
-            this.toolStripStatusLabel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.toolStripStatusLabel12.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripStatusLabel12.Name = "toolStripStatusLabel12";
-            this.toolStripStatusLabel12.Size = new System.Drawing.Size(24, 27);
-            this.toolStripStatusLabel12.Text = "●";
-            this.toolStripStatusLabel12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblEolJigCam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblEolJigCam.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblEolJigCam.Name = "tsslblEolJigCam";
+            this.tsslblEolJigCam.Size = new System.Drawing.Size(24, 27);
+            this.tsslblEolJigCam.Text = "●";
+            this.tsslblEolJigCam.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel3
             // 
@@ -244,14 +244,14 @@ namespace JxAlignVision
             this.toolStripStatusLabel3.Size = new System.Drawing.Size(83, 27);
             this.toolStripStatusLabel3.Text = "EOL读码 相机";
             // 
-            // toolStripStatusLabel15
+            // tsslblEolCsCam
             // 
-            this.toolStripStatusLabel15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.toolStripStatusLabel15.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.toolStripStatusLabel15.Name = "toolStripStatusLabel15";
-            this.toolStripStatusLabel15.Size = new System.Drawing.Size(24, 27);
-            this.toolStripStatusLabel15.Text = "●";
-            this.toolStripStatusLabel15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tsslblEolCsCam.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
+            this.tsslblEolCsCam.Font = new System.Drawing.Font("Microsoft YaHei UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.tsslblEolCsCam.Name = "tsslblEolCsCam";
+            this.tsslblEolCsCam.Size = new System.Drawing.Size(24, 27);
+            this.tsslblEolCsCam.Text = "●";
+            this.tsslblEolCsCam.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // toolStripStatusLabel4
             // 
@@ -453,6 +453,51 @@ namespace JxAlignVision
             this.tableLayoutPanel2.Size = new System.Drawing.Size(861, 634);
             this.tableLayoutPanel2.TabIndex = 1;
             // 
+            // ucDisWpc1
+            // 
+            this.ucDisWpc1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDisWpc1.Location = new System.Drawing.Point(4, 4);
+            this.ucDisWpc1.Name = "ucDisWpc1";
+            this.ucDisWpc1.Size = new System.Drawing.Size(279, 309);
+            this.ucDisWpc1.TabIndex = 1;
+            this.ucDisWpc1.Title = "WPC 读码 点亮 1";
+            // 
+            // ucDisWpc2
+            // 
+            this.ucDisWpc2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDisWpc2.Location = new System.Drawing.Point(290, 4);
+            this.ucDisWpc2.Name = "ucDisWpc2";
+            this.ucDisWpc2.Size = new System.Drawing.Size(279, 309);
+            this.ucDisWpc2.TabIndex = 2;
+            this.ucDisWpc2.Title = "WPC 读码 点亮 2";
+            // 
+            // ucDisEolProd
+            // 
+            this.ucDisEolProd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDisEolProd.Location = new System.Drawing.Point(4, 320);
+            this.ucDisEolProd.Name = "ucDisEolProd";
+            this.ucDisEolProd.Size = new System.Drawing.Size(279, 310);
+            this.ucDisEolProd.TabIndex = 3;
+            this.ucDisEolProd.Title = "EOL 产品对位";
+            // 
+            // ucDisEolJig
+            // 
+            this.ucDisEolJig.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDisEolJig.Location = new System.Drawing.Point(290, 320);
+            this.ucDisEolJig.Name = "ucDisEolJig";
+            this.ucDisEolJig.Size = new System.Drawing.Size(279, 310);
+            this.ucDisEolJig.TabIndex = 4;
+            this.ucDisEolJig.Title = "EOL 治具";
+            // 
+            // ucDisEolCs
+            // 
+            this.ucDisEolCs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.ucDisEolCs.Location = new System.Drawing.Point(576, 320);
+            this.ucDisEolCs.Name = "ucDisEolCs";
+            this.ucDisEolCs.Size = new System.Drawing.Size(281, 310);
+            this.ucDisEolCs.TabIndex = 5;
+            this.ucDisEolCs.Title = "EOL 读码 点亮";
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.rtxtLog);
@@ -621,51 +666,6 @@ namespace JxAlignVision
             this.lb_vision.Text = "#####";
             this.lb_vision.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // ucDisWpc1
-            // 
-            this.ucDisWpc1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDisWpc1.Location = new System.Drawing.Point(4, 4);
-            this.ucDisWpc1.Name = "ucDisWpc1";
-            this.ucDisWpc1.Size = new System.Drawing.Size(279, 309);
-            this.ucDisWpc1.TabIndex = 1;
-            this.ucDisWpc1.Title = "WPC 读码 点亮 1";
-            // 
-            // ucDisWpc2
-            // 
-            this.ucDisWpc2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDisWpc2.Location = new System.Drawing.Point(290, 4);
-            this.ucDisWpc2.Name = "ucDisWpc2";
-            this.ucDisWpc2.Size = new System.Drawing.Size(279, 309);
-            this.ucDisWpc2.TabIndex = 2;
-            this.ucDisWpc2.Title = "WPC 读码 点亮 2";
-            // 
-            // ucDisEolProd
-            // 
-            this.ucDisEolProd.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDisEolProd.Location = new System.Drawing.Point(4, 320);
-            this.ucDisEolProd.Name = "ucDisEolProd";
-            this.ucDisEolProd.Size = new System.Drawing.Size(279, 310);
-            this.ucDisEolProd.TabIndex = 3;
-            this.ucDisEolProd.Title = "EOL 产品对位";
-            // 
-            // ucDisEolJig
-            // 
-            this.ucDisEolJig.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDisEolJig.Location = new System.Drawing.Point(290, 320);
-            this.ucDisEolJig.Name = "ucDisEolJig";
-            this.ucDisEolJig.Size = new System.Drawing.Size(279, 310);
-            this.ucDisEolJig.TabIndex = 4;
-            this.ucDisEolJig.Title = "EOL 治具";
-            // 
-            // ucDisEolCs
-            // 
-            this.ucDisEolCs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ucDisEolCs.Location = new System.Drawing.Point(576, 320);
-            this.ucDisEolCs.Name = "ucDisEolCs";
-            this.ucDisEolCs.Size = new System.Drawing.Size(281, 310);
-            this.ucDisEolCs.TabIndex = 5;
-            this.ucDisEolCs.Title = "EOL 读码 点亮";
-            // 
             // frmMain
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -711,7 +711,7 @@ namespace JxAlignVision
         private System.Windows.Forms.ToolStripMenuItem StripMenu_Param;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripStatusLabel status_Plc;
+        private System.Windows.Forms.ToolStripStatusLabel tsslblEolLoadPlc;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel4;
         private System.Windows.Forms.ToolStripStatusLabel Status_User;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel6;
@@ -732,9 +732,9 @@ namespace JxAlignVision
         private ucDisplay ucDisWpc1;
         private ucDisplay ucDisWpc2;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel7;
-        private System.Windows.Forms.ToolStripStatusLabel statusCam1;
+        private System.Windows.Forms.ToolStripStatusLabel tsslblWpcCam1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel3;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel5;
+        private System.Windows.Forms.ToolStripStatusLabel tsslblWpcCam2;
         private ucDisplay ucDisEolProd;
         private ucDisplay ucDisEolJig;
         private ucDisplay ucDisEolCs;
@@ -743,15 +743,15 @@ namespace JxAlignVision
         private ToolStripMenuItem eOL产品位ToolStripMenuItem;
         private ToolStripMenuItem eOL治具位标定ToolStripMenuItem;
         private ToolStripStatusLabel toolStripStatusLabel2;
-        private ToolStripStatusLabel toolStripStatusLabel8;
+        private ToolStripStatusLabel tsslblWpcPlc;
         private ToolStripStatusLabel toolStripStatusLabel10;
-        private ToolStripStatusLabel toolStripStatusLabel9;
+        private ToolStripStatusLabel tsslblEolPlc;
         private ToolStripStatusLabel toolStripStatusLabel11;
         private ToolStripStatusLabel toolStripStatusLabel13;
-        private ToolStripStatusLabel toolStripStatusLabel14;
-        private ToolStripStatusLabel toolStripStatusLabel12;
+        private ToolStripStatusLabel tsslblEolProdCam;
+        private ToolStripStatusLabel tsslblEolJigCam;
         private ToolStripStatusLabel toolStripStatusLabel16;
-        private ToolStripStatusLabel toolStripStatusLabel15;
+        private ToolStripStatusLabel tsslblEolCsCam;
         private ToolStripMenuItem eOL上料ToolStripMenuItem;
         private ToolStripMenuItem eOLToolStripMenuItem;
     }

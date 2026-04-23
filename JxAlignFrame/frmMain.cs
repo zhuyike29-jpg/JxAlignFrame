@@ -25,7 +25,7 @@ namespace JxAlignVision
         bool isRunning = false;
         bool isWpcPlcOpen = false;
         bool isEolLoadPlcOpen = false;
-        bool isEolPlcOpen = false;
+        bool isEolCsPlcOpen = false;
 
         bool isWpcCam1Open = false;
         bool isWpcCam2Open = false;
@@ -99,7 +99,14 @@ namespace JxAlignVision
                 userId = Status.LoginUserId - 1;
                 isRunning = !Status.isRunning;
                 isWpcPlcOpen = !Device.WpcReadCodeSignPlc.IsOpen();
+                isEolLoadPlcOpen = !Device.EolLoadPlc.IsOpen();
+                isEolCsPlcOpen = !Device.EolReadCodeSignPlc.IsOpen();
+
                 isWpcCam1Open = !Device.WpcCam1.IsOpen();
+                isWpcCam2Open = !Device.WpcCam2.IsOpen();
+                isEolJigCamOpen = !Device.EolJigCam.IsOpen();
+                isEolProdCamOpen= !Device.EolProdCam.IsOpen();
+                isEolJigCodeSignOpen=!Device.EolCsCam.IsOpen();
             });
         }
 
@@ -149,17 +156,54 @@ namespace JxAlignVision
                     StripMenu_Param.Visible = userId >= 3 && !Status.isRunning;
                 }
 
-                //设备连接状态
+                //设备连接状态 -- PLC
                 if (isWpcPlcOpen != Device.WpcReadCodeSignPlc.IsOpen())
                 {
                     isWpcPlcOpen = Device.WpcReadCodeSignPlc.IsOpen();
-                    status_Plc.ForeColor = isWpcPlcOpen ? Color.Green : Color.Red;
+                    tsslblWpcPlc.ForeColor = isWpcPlcOpen ? Color.Green : Color.Red;
                 }
 
+                if (isEolLoadPlcOpen != Device.EolLoadPlc.IsOpen())
+                {
+                    isEolLoadPlcOpen = Device.EolLoadPlc.IsOpen();
+                    tsslblEolLoadPlc.ForeColor = isEolLoadPlcOpen ? Color.Green : Color.Red;
+                }
+
+                if (isEolCsPlcOpen != Device.EolReadCodeSignPlc.IsOpen()) 
+                {
+                    isEolCsPlcOpen = Device.EolReadCodeSignPlc.IsOpen();
+                    tsslblEolPlc.ForeColor = isEolCsPlcOpen ? Color.Green : Color.Red;
+                }
+
+                //设备连接状态 -- 相机
                 if (isWpcCam1Open != Device.WpcCam1.IsOpen())
                 {
                     isWpcCam1Open = Device.WpcCam1.IsOpen();
-                    statusCam1.ForeColor = isWpcCam1Open ? Color.Green : Color.Red;
+                    tsslblWpcCam1.ForeColor = isWpcCam1Open ? Color.Green : Color.Red;
+                }
+
+                if (isWpcCam2Open != Device.WpcCam2.IsOpen())
+                {
+                    isWpcCam2Open = Device.WpcCam2.IsOpen();
+                    tsslblWpcCam2.ForeColor = isWpcCam2Open ? Color.Green : Color.Red;
+                }
+                
+                if (isEolProdCamOpen != Device.EolProdCam.IsOpen())
+                {
+                    isEolProdCamOpen = Device.EolProdCam.IsOpen();
+                    tsslblEolProdCam.ForeColor = isEolProdCamOpen ? Color.Green : Color.Red;
+                }
+
+                if (isEolJigCamOpen != Device.EolJigCam.IsOpen()) 
+                { 
+                    isEolJigCamOpen = Device.EolJigCam.IsOpen();
+                    tsslblEolJigCam.ForeColor = isEolJigCamOpen ? Color.Green : Color.Red;
+                }
+
+                if(isEolJigCodeSignOpen != Device.EolCsCam.IsOpen())
+                {
+                    isEolJigCodeSignOpen = Device.EolCsCam.IsOpen();
+                    tsslblEolCsCam.ForeColor = isEolJigCodeSignOpen ? Color.Green : Color.Red;
                 }
 
                 //程序运行状态
@@ -196,14 +240,14 @@ namespace JxAlignVision
                 //检查设备连接状态
                 if (!Device.WpcReadCodeSignPlc.IsOpen())
                 {
-                    UpdateProcess("Plc未连接", false);
+                    UpdateProcess("WPC Plc未连接", false);
                     Status.isRunning = false;
                     continue;
                 }
 
                 if (!Device.WpcCam1.IsOpen())
                 {
-                    UpdateProcess("相机连接失败", false);
+                    UpdateProcess("WPC相机1连接失败", false);
                     Status.isRunning = false;
                     continue;
                 }
@@ -541,7 +585,7 @@ namespace JxAlignVision
                 //检查设备连接状态
                 if (!Device.EolReadCodeSignPlc.IsOpen())
                 {
-                    UpdateProcess("Plc未连接", false);
+                    UpdateProcess("EOL Plc未连接", false);
                     Status.isRunning = false;
                     continue;
                 }

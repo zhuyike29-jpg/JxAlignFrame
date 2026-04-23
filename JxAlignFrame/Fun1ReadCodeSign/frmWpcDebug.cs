@@ -9,6 +9,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static JxAlignVision.Static;
@@ -17,8 +18,8 @@ namespace JxAlignVision
 {
     public partial class frmWpcDebug : UIForm
     {
-        MyVision _readCode;
-        MyVision _sign;
+        MyVision _visReadCode;
+        MyVision _visSign;
         CfgWpcTrainSignReadCode _wpcSignReadCode;
         BaseHikCamera _cam;
 
@@ -26,8 +27,8 @@ namespace JxAlignVision
         public frmWpcDebug(MyVision readCode, MyVision sign, CfgWpcTrainSignReadCode signReadCode,BaseHikCamera cam)
         {
             InitializeComponent();
-            _readCode = readCode;
-            _sign = sign;
+            _visReadCode = readCode;
+            _visSign = sign;
             _wpcSignReadCode = signReadCode;
             _cam = cam;
         }
@@ -149,7 +150,7 @@ namespace JxAlignVision
         private void btnRunVppSign_Click(object sender, EventArgs e)
         {
             ModLogger.Operate("运行vpp 点亮", () => {
-               var result =  RunVppSignTool(1, _sign, ckbOfflineImgCam1, displayCCD1);
+               var result =  RunVppSignTool(1, _visSign, ckbOfflineImgCam1, displayCCD1);
                 if (!result) { UpdateProcess("产品未点亮！", false); }
                 else { UpdateProcess("产品点亮！"); }
             });
@@ -158,14 +159,14 @@ namespace JxAlignVision
         private void btnEditVppSign_Click(object sender, EventArgs e)
         {
             ModLogger.Operate("修改vpp 点亮", () => {
-                _sign.Edit();
+                _visSign.Edit();
             });
         }
 
         private void btnRunVppCode_Click(object sender, EventArgs e)
         {
             ModLogger.Operate("运行vpp 读码", () => {
-                var result = RunVppCodeTool(1, _readCode, ckbOfflineImgCam1, displayCCD1);
+                var result = RunVppCodeTool(1, _visReadCode, ckbOfflineImgCam1, displayCCD1);
                 if (result != "") UpdateProcess($"产品码：{result} ", false);
                 else { UpdateProcess("识别失败",false); }
             });
@@ -174,7 +175,7 @@ namespace JxAlignVision
         private void btnEditVppCode_Click(object sender, EventArgs e)
         {
             ModLogger.Operate("修改vpp 读码", () => {
-                _readCode.Edit();
+                _visReadCode.Edit();
             });
         }
 

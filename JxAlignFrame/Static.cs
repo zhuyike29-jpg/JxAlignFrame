@@ -80,6 +80,7 @@ namespace JxAlignVision
                         Device.WpcCam2 = new BaseHikCamera(Config.App.WpcSysImgRotateFilp2);
                         Device.EolProdCam = new BaseHikCamera(Config.App.EolProdSysImgRotateFilp);
                         Device.EolJigCam = new BaseHikCamera(Config.App.EolJigSysImgRotateFilp);
+                        Device.EolCsCam = new BaseHikCamera(Config.App.EolCodeSignSysImgRotateFilp);
                         if (Config.App.IsAutoConnectDevice)
                         {
                             try 
@@ -126,10 +127,19 @@ namespace JxAlignVision
                             {
                                 UIMessageBox.ShowError($"相机{Config.App.EolCodeSignCam}连接失败，{ex.Message}");
                             }
+
+
                         }
                     });
                     frmCheck.AddText("加载配方", () => {
-                        Recipe.Init();
+                        try
+                        {
+                            Recipe.Init();
+                        }
+                        catch (Exception ex) {
+                            UIMessageBox.ShowError($"配方初始化失败，{ex.Message}");
+                        }
+                        
                     });
                 }
             });
@@ -185,7 +195,7 @@ namespace JxAlignVision
             public static CfgWpcTrainSignReadCode TrainWpcSignReadCode1 = new CfgWpcTrainSignReadCode();
             public static CfgWpcTrainSignReadCode TrainWpcSignReadCode2 = new CfgWpcTrainSignReadCode();
             public static CfgTrainEolLoad TrainEolLoad = new CfgTrainEolLoad();
-            public static CfgWpcTrainSignReadCode TrainEolSignReadCode = new CfgWpcTrainSignReadCode();
+            public static CfgEolTrainSignReadCode TrainEolSignReadCode = new CfgEolTrainSignReadCode();
 
             public static MyVision VisWpcCam1Code = new MyVision();
             public static MyVision VisWpcCam1Sign = new MyVision();

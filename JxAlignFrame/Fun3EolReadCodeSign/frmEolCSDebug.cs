@@ -19,16 +19,16 @@ namespace JxAlignVision
     {
         MyVision _readCode;
         MyVision _sign;
-        CfgWpcTrainSignReadCode _wpcSignReadCode;
+        CfgEolTrainSignReadCode _eolSignReadCode;
         BaseHikCamera _cam;
 
 
-        public frmEolCSDebug(MyVision readCode, MyVision sign, CfgWpcTrainSignReadCode signReadCode,BaseHikCamera cam)
+        public frmEolCSDebug(MyVision readCode, MyVision sign, CfgEolTrainSignReadCode eolSignReadCode,BaseHikCamera cam)
         {
             InitializeComponent();
             _readCode = readCode;
             _sign = sign;
-            _wpcSignReadCode = signReadCode;
+            _eolSignReadCode = eolSignReadCode;
             _cam = cam;
         }
         ModBindEditValue BindEditValue = new ModBindEditValue();
@@ -38,7 +38,7 @@ namespace JxAlignVision
             ModLogger.Record(() => {
                 _cam.OnNewImage += CamOnNewImage;
 
-                var obj = _wpcSignReadCode;
+                var obj = _eolSignReadCode;
                 BindEditValue.Bind(txtMinGray, obj, nameof(obj.minGray));
                 BindEditValue.Bind(txtMinGray, obj, nameof(obj.regionCnt));
             });
@@ -50,7 +50,7 @@ namespace JxAlignVision
                 if (BindEditValue.Apply(true))
                 {
                     ckbAutoCam1Grabbing.Checked = false;
-                    _wpcSignReadCode.Save();
+                    _eolSignReadCode.Save();
                     _cam.OnNewImage -= CamOnNewImage;
                 }
                 else
