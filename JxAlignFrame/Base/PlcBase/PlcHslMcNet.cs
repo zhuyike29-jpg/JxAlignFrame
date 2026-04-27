@@ -3,47 +3,67 @@ using HslCommunication;
 using HslCommunication.Profinet.Melsec;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading;
+using log4net;
 
 namespace JxAlignVision
 {
-    public class PlcHslMcNet:IPLC
+    public class PlcHslMcNet : IPLC
     {
-        /// <summary> PLC会话类，用于同一个IP和端口的连接复用 </summary>
         private class PlcSession
         {
             public MelsecMcNet Client { get; set; }
-            /// <summary> 读写同步锁，确保多线程并发时不串报文 </summary>
             public object SyncLock { get; set; } = new object();
-            /// <summary> 引用计数，支持多个MyPLC实例共享连接 </summary>
             public int RefCount { get; set; } = 0;
             public bool IsOpen { get; set; } = false;
         }
 
-        // 静态连接池，以 "IP:Port" 为 Key 管理多实例
         private static readonly ConcurrentDictionary<string, PlcSession> _sessionPool = new ConcurrentDictionary<string, PlcSession>();
         private readonly PlcSession _session;
+
+        #region [新增] 外部注入的拦截器与日志委托
+
+        private HashSet<string> _heartbeatAddresses = new HashSet<string>();
+        private HashSet<string> _triggerAddresses = new HashSet<string>();
+
+        // 外部传入的日志记录方法
+        private ILog  _log;
+
+        /// <summary>
+        /// 配置日志拦截器与外部日志委托
+        /// </summary>
+        /// <param name="heartbeats">需要屏蔽的心跳地址集合(不记日志)</param>
+        /// <param name="triggers">需要过滤的触发地址集合(值不为1时不记日志)</param>
+        /// <param name="logInfo">外部的 Info 级别日志方法 (如 Static.LogComm.Info)</param>
+        /// <param name="logError">外部的 Error 级别日志方法 (如 Static.LogComm.Error)</param>
+        public void SetLogInterceptor(List<string> heartbeats, List<string> triggers, ILog logInfo)
+        {
+            if (heartbeats != null) _heartbeatAddresses = new HashSet<string>(heartbeats);
+            if (triggers != null) _triggerAddresses = new HashSet<string>(triggers);
+
+            _log = logInfo;
+        }
+
+        #endregion
 
         #region HIDE (初始化与连接)
 
         public PlcHslMcNet(string ip, int port)
         {
             string key = $"{ip}:{port}";
-            // 如果使用相同的IP和端口，获取现有的共享Session；如果是新端口，则创建新的Session
             _session = _sessionPool.GetOrAdd(key, k => new PlcSession
             {
                 Client = new MelsecMcNet(ip, port)
             });
         }
 
-        //====[CONNECT]==================
-        /// <summary> 连接 </summary>
         public void Open()
         {
             lock (_session.SyncLock)
             {
                 _session.RefCount++;
-                if (_session.IsOpen) return; // 已经被其他同端口实例打开，直接复用
+                if (_session.IsOpen) return;
 
                 var result = _session.Client.ConnectServer();
                 _session.IsOpen = result.IsSuccess;
@@ -55,7 +75,6 @@ namespace JxAlignVision
             }
         }
 
-        /// <summary> 断开 </summary>
         public void Close()
         {
             lock (_session.SyncLock)
@@ -63,7 +82,6 @@ namespace JxAlignVision
                 if (!_session.IsOpen) return;
 
                 _session.RefCount--;
-                // 只有当所有复用该端口的实例都调用了Close，才真正断开物理连接
                 if (_session.RefCount <= 0)
                 {
                     _session.Client.ConnectClose();
@@ -73,7 +91,6 @@ namespace JxAlignVision
             }
         }
 
-        /// <summary> 是否已连接 </summary>
         public bool IsOpen()
         {
             lock (_session.SyncLock)
@@ -84,21 +101,112 @@ namespace JxAlignVision
 
         #endregion
 
-        #region 基础读写安全封装 只在IO瞬间加锁，不阻塞外部高频调用
+        #region 基础读写安全封装 + 切面日志拦截
 
-        public OperateResult<short> ReadInt16(string address) { lock (_session.SyncLock) return _session.Client.ReadInt16(address); }
-        public OperateResult Write(string address, short value) { lock (_session.SyncLock) return _session.Client.Write(address, value); }
-        public OperateResult<int> ReadInt32(string address) { lock (_session.SyncLock) return _session.Client.ReadInt32(address); }
-        public OperateResult<int[]> ReadInt32(string address, ushort length) { lock (_session.SyncLock) return _session.Client.ReadInt32(address, length); }
-        public OperateResult Write(string address, int value) { lock (_session.SyncLock) return _session.Client.Write(address, value); }
-        public OperateResult Write(string address, int[] values) { lock (_session.SyncLock) return _session.Client.Write(address, values); }
-        public OperateResult<bool> ReadBool(string address) { lock (_session.SyncLock) return _session.Client.ReadBool(address); }
-        public OperateResult Write(string address, bool value) { lock (_session.SyncLock) return _session.Client.Write(address, value); }
-        public OperateResult<string> ReadString(string address, ushort length){lock (_session.SyncLock){ return _session.Client.ReadString(address, length);}}
-        public OperateResult Write(string address, string value){lock (_session.SyncLock){return _session.Client.Write(address, value); } }
+        public OperateResult<short> ReadInt16(string address)
+        {
+            OperateResult<short> res;
+            lock (_session.SyncLock) { res = _session.Client.ReadInt16(address); }
+
+            if (_heartbeatAddresses.Contains(address)) return res;
+            if (_triggerAddresses.Contains(address) && res.IsSuccess && res.Content != 1) return res;
+
+            // 使用外部注入的委托记录日志 (使用 ?. 确保安全调用)
+            if (res.IsSuccess)
+                _log?.Info($"[Hsl PLC读取] 地址:{address}, 值:{res.Content}");
+            else
+                _log?.Error($"[Hsl PLC读取异常] 地址:{address}, 错误:{res.Message}");
+
+            return res;
+        }
+
+        public OperateResult Write(string address, short value)
+        {
+            OperateResult res;
+            lock (_session.SyncLock) { res = _session.Client.Write(address, value); }
+
+            if (_heartbeatAddresses.Contains(address)) return res;
+
+            if (res.IsSuccess)
+                _log?.Info($"[Hsl PLC写入] 地址:{address}, 值:{value} 成功");
+            else
+                _log?.Error($"[Hsl PLC写入异常] 地址:{address}, 值:{value}, 错误:{res.Message}");
+
+            return res;
+        }
+
+        public OperateResult<int> ReadInt32(string address)
+        {
+            OperateResult<int> res;
+            lock (_session.SyncLock) { res = _session.Client.ReadInt32(address); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC读取] 地址:{address}, 值:{res.Content}");
+            else _log?.Error($"[Hsl PLC读取异常] 地址:{address}, 错误:{res.Message}");
+            return res;
+        }
+
+        public OperateResult<int[]> ReadInt32(string address, ushort length)
+        {
+            OperateResult<int[]> res;
+            lock (_session.SyncLock) { res = _session.Client.ReadInt32(address, length); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC读取数组] 地址:{address}, 长度:{length} 成功");
+            else _log?.Error($"[Hsl PLC读取数组异常] 地址:{address}, 错误:{res.Message}");
+            return res;
+        }
+
+        public OperateResult Write(string address, int value)
+        {
+            OperateResult res;
+            lock (_session.SyncLock) { res = _session.Client.Write(address, value); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC写入] 地址:{address}, 值:{value} 成功");
+            else _log?.Error($"[Hsl PLC写入异常] 地址:{address}, 值:{value}, 错误:{res.Message}");
+            return res;
+        }
+
+        public OperateResult Write(string address, int[] values)
+        {
+            OperateResult res;
+            lock (_session.SyncLock) { res = _session.Client.Write(address, values); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC写入数组] 地址:{address}, 长度:{values?.Length} 成功");
+            else _log?.Error($"[Hsl PLC写入数组异常] 地址:{address}, 错误:{res.Message}");
+            return res;
+        }
+
+        public OperateResult<bool> ReadBool(string address)
+        {
+            OperateResult<bool> res;
+            lock (_session.SyncLock) { res = _session.Client.ReadBool(address); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC读取Bool] 地址:{address}, 值:{res.Content}");
+            else _log?.Error($"[Hsl PLC读取Bool异常] 地址:{address}, 错误:{res.Message}");
+            return res;
+        }
+
+        public OperateResult Write(string address, bool value)
+        {
+            OperateResult res;
+            lock (_session.SyncLock) { res = _session.Client.Write(address, value); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC写入Bool] 地址:{address}, 值:{value} 成功");
+            else _log?.Error($"[Hsl PLC写入Bool异常] 地址:{address}, 值:{value}, 错误:{res.Message}");
+            return res;
+        }
+
+        public OperateResult<string> ReadString(string address, ushort length)
+        {
+            OperateResult<string> res;
+            lock (_session.SyncLock) { res = _session.Client.ReadString(address, length); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC读取String] 地址:{address}, 值:{res.Content}");
+            else _log?.Error($"[Hsl PLC读取String异常] 地址:{address}, 错误:{res.Message}");
+            return res;
+        }
+
+        public OperateResult Write(string address, string value)
+        {
+            OperateResult res;
+            lock (_session.SyncLock) { res = _session.Client.Write(address, value); }
+            if (res.IsSuccess) _log?.Info($"[Hsl PLC写入String] 地址:{address}, 值:{value} 成功");
+            else _log?.Error($"[Hsl PLC写入String异常] 地址:{address}, 错误:{res.Message}");
+            return res;
+        }
 
         #endregion
-
-
     }
 }

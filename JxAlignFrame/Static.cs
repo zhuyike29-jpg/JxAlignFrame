@@ -50,13 +50,24 @@ namespace JxAlignVision
 
 
                     frmCheck.AddText("加载Plc", () => {
-                        Device.WpcReadCodeSignPlc = new WpcReadCodeSignPlc(PlcFactory.CreatePlc(Config.App.WpcPlcType,Config.App.WpcPlcIp,Config.App.WpcPlcPort,Config.App.WpcMxStation));
-                        Device.EolLoadPlc = new EolLoadPlc(PlcFactory.CreatePlc(Config.App.EolPlcType,Config.App.EolPlcIp,Config.App.EolPlcPort,Config.App.EolMxStation));
-                        Device.EolReadCodeSignPlc = new EolReadCodeSignPlc(PlcFactory.CreatePlc(Config.App.EolCsPlcType,Config.App.EolCsPlcIp,Config.App.EolCsPort, Config.App.EolCsMxStation));
+                        //传入心跳点位和触发点位 
+                        //WPC PLC
+                        List<string> lstHeartBeatWpc = new List<string>() { Config.App.WpcPlcHeartDog };
+                        List<string> lstTriggersWpc = new List<string>() { Config.App.WpcPlcProdCodeTrigger1, Config.App.WpcPlcProdCodeTrigger2,Config.App.WpcPlcProdSignTrigger1,Config.App.WpcPlcProdSignTrigger2};
+                        Device.WpcReadCodeSignPlc = new WpcReadCodeSignPlc(PlcFactory.CreatePlc(Config.App.WpcPlcType, Config.App.WpcPlcIp, Config.App.WpcPlcPort, Config.App.WpcMxStation, lstHeartBeatWpc, lstTriggersWpc, ModLogger.LogCommumication));
+                        //EOL PLC
+                        List<string> lstHeartBeatEol = new List<string>() { Config.App.EolPlcHeartDog };
+                        List<string> lstTriggersEol = new List<string>() { Config.App.EolJigAlignTrigger, Config.App.EolProdAlignTrigger, Config.App.EolCalcAlignTrigger};
+                        Device.EolLoadPlc = new EolLoadPlc(PlcFactory.CreatePlc(Config.App.EolPlcType, Config.App.EolPlcIp, Config.App.EolPlcPort, Config.App.EolMxStation, lstHeartBeatEol, lstTriggersEol, ModLogger.LogCommumication));
+                        //EOL 读码&点亮PLC
+                        List<string> lstHeartBeatEolCs = new List<string>() { Config.App.EolCsPlcHeartDog };
+                        List<string> lstTriggersEolCs = new List<string>() { Config.App.EolPlcProductSignTrigger, Config.App.EolPlcProductCodeTrigger };
+                        Device.EolReadCodeSignPlc = new EolReadCodeSignPlc(PlcFactory.CreatePlc(Config.App.EolCsPlcType, Config.App.EolCsPlcIp, Config.App.EolCsPort, Config.App.EolCsMxStation, lstHeartBeatEolCs, lstTriggersEolCs, ModLogger.LogCommumication));
+
                         if (Config.App.IsAutoConnectDevice)
                         {
                             try
-                            {
+                            { 
                                 Device.WpcReadCodeSignPlc.Open();
                             }
                             catch(Exception ex) 

@@ -221,7 +221,6 @@ namespace JxAlignVision
                     StripMenu_Param.Visible = Status.LoginUserId >= 3 && !isRunning;
                 }
 
-                //GC.Collect();
             });
         }
 
