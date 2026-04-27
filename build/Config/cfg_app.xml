@@ -23,8 +23,8 @@
   <WpcCam2>2</WpcCam2>
   <WpcSysImgRotateFilp2>RotateNoneFlipNone</WpcSysImgRotateFilp2>
   <WpcPlcType>Hsl</WpcPlcType>
-  <WpcPlcIp>192.168.0.10</WpcPlcIp>
-  <WpcPlcPort>5000</WpcPlcPort>
+  <WpcPlcIp>127.0.0.1</WpcPlcIp>
+  <WpcPlcPort>6000</WpcPlcPort>
   <WpcMxStation>1</WpcMxStation>
   <WpcPlcHeartDog>D9600</WpcPlcHeartDog>
   <EolPordCam>1</EolPordCam>
@@ -32,15 +32,15 @@
   <EolJigCam>1</EolJigCam>
   <EolJigSysImgRotateFilp>RotateNoneFlipNone</EolJigSysImgRotateFilp>
   <EolPlcType>Hsl</EolPlcType>
-  <EolPlcIp>192.168.0.10</EolPlcIp>
-  <EolPlcPort>5000</EolPlcPort>
+  <EolPlcIp>127.0.0.1</EolPlcIp>
+  <EolPlcPort>6001</EolPlcPort>
   <EolMxStation>1</EolMxStation>
   <EolPlcHeartDog>D9600</EolPlcHeartDog>
   <EolCodeSignCam>1</EolCodeSignCam>
   <EolCodeSignSysImgRotateFilp>RotateNoneFlipNone</EolCodeSignSysImgRotateFilp>
   <EolCsPlcType>Hsl</EolCsPlcType>
-  <EolCsPlcIp>192.168.0.10</EolCsPlcIp>
-  <EolCsPort>5000</EolCsPort>
+  <EolCsPlcIp>127.0.0.1</EolCsPlcIp>
+  <EolCsPort>6002</EolCsPort>
   <EolCsMxStation>1</EolCsMxStation>
   <EolCsPlcHeartDog>D9600</EolCsPlcHeartDog>
   <WpcPlcProdSignTrigger1>D9000</WpcPlcProdSignTrigger1>

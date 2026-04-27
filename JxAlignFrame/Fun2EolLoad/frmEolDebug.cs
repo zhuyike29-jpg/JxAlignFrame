@@ -193,7 +193,6 @@ namespace JxAlignVision
                 txtRobptPlaceY.Text = robpt.Y.ToString("0.000");
                 txtRobptPlaceR.Text = robpt.R.ToString("0.000");
             });
-
         }
 
         private void btnCalcTool2_Click(object sender, EventArgs e)
@@ -208,6 +207,54 @@ namespace JxAlignVision
             });
         }
 
+        private void btnRunProdVpp_Click(object sender, EventArgs e)
+        {
+            ModLogger.Operate("运行Panel vpp1", () => {
+                var imgpt = RunVppTool(1, Recipe.VisEolProd, chkOfflineimgCamProd, displayCCD1);
+                lb_imgpt1.Text = imgpt.ToString();
+                if (chkOfflineimgCamProd.Checked)
+                {
+                    lb_img2robpt1.Text = "###";
+                }
+                else
+                {
+                    var robpt = Device.EolLoadPlc.GetPlcCurPosCoord;
+                    var  img2robpt = Config.EolProdCalib.MatCamera.TransformCoord(imgpt); ;
+                    lb_img2robpt1.Text = img2robpt.ToString();
+                }
+            });
+        }
 
+        private void btnEditProdVpp_Click(object sender, EventArgs e)
+        {
+            ModLogger.Operate("修改Panel vpp1", () => {
+                Recipe.VisEolProd.Edit();
+            });
+        }
+
+        private void btnRunJigVpp_Click(object sender, EventArgs e)
+        {
+            ModLogger.Operate("运行Jig vpp1", () => {
+                var imgpt = RunVppTool(2, Recipe.VisEolJig, chkOfflineImgCamJig, displayCCD2);
+                lb_imgpt2.Text = imgpt.ToString();
+                if (chkOfflineImgCamJig.Checked)
+                {
+                    lb_img2robpt2.Text = "###";
+                }
+                else
+                {
+                    var robpt = Device.EolLoadPlc.GetPlcCurPosCoord;
+                    var img2robpt = Config.EolJigCalib.MatCamera.TransformCoord(imgpt); ;
+                    lb_img2robpt2.Text = img2robpt.ToString();
+                }
+            });
+        }
+
+        private void btnEditJigVpp_Click(object sender, EventArgs e)
+        {
+            ModLogger.Operate("修改Jig vpp1", () => {
+                Recipe.VisEolJig.Edit();
+            });
+        }
     }
 }

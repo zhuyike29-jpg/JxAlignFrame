@@ -41,7 +41,7 @@ namespace JxAlignVision
 
                 var obj = _wpcSignReadCode;
                 BindEditValue.Bind(txtMinGray, obj, nameof(obj.minGray));
-                BindEditValue.Bind(txtMinGray, obj, nameof(obj.regionCnt));
+                BindEditValue.Bind(txtRegionCnt, obj, nameof(obj.regionCnt));
             });
         }
 
@@ -97,7 +97,7 @@ namespace JxAlignVision
             display.Image = null;
             display.Record = null;
             display.Image = img;
-            var result =  tool.GetProdSign(img,Recipe.TrainWpcSignReadCode1.minGray,Recipe.TrainWpcSignReadCode1.regionCnt);
+            var result =  tool.GetProdSign(img, _wpcSignReadCode.minGray, _wpcSignReadCode.regionCnt);
             display.Record = tool.GetRecord();
             return result;
 
@@ -183,7 +183,32 @@ namespace JxAlignVision
         void UpdateProcess(string text, bool isOk = true)
         {
             ModLogger.LogOperate.Info(text);
-            ModLogger.FillRichTextBox(rtxtLog, text, isOk);
+            FillRichTextBox(rtxtLog, text, isOk ? Color.Green : Color.Red);
+        }
+
+        public void FillRichTextBox(UIRichTextBox box, string value, Color c)
+        {
+            box.BeginInvoke(new Action(() => {
+                try
+                {
+                    string text = "[" + DateTime.Now.ToString("HH:mm:ss") + "] " + value + "\n";
+                    box.Select(box.TextLength, 0);
+                    box.SelectionBackColor = c;
+                    box.AppendText(text);
+                    if (box.Text.Length > 3000)
+                    {
+                        float zoomFactor = box.ZoomFactor;
+                        box.Select(box.TextLength - 2000, 2000);
+                        box.Rtf = box.SelectedRtf;
+                        box.AppendText("\n");
+                        box.ZoomFactor = zoomFactor + 1E-07f;
+                    }
+                    box.Select(box.TextLength, 0);
+                    box.ScrollToCaret();
+                }
+                catch (Exception ex) { }
+               
+            }));
         }
 
 

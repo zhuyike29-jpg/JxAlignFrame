@@ -26,12 +26,10 @@ namespace JxAlignVision
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEolCSDebug));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEolDebug));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.groupBox3 = new Sunny.UI.UIGroupBox();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtTool2R = new Sunny.UI.UITextBox();
-            this.txtTool2Y = new Sunny.UI.UITextBox();
             this.txtJigX = new Sunny.UI.UITextBox();
             this.txtJigY = new Sunny.UI.UITextBox();
             this.txtRobX = new Sunny.UI.UITextBox();
@@ -48,23 +46,29 @@ namespace JxAlignVision
             this.txtProdR = new Sunny.UI.UITextBox();
             this.btnGetProdPos = new Sunny.UI.UIButton();
             this.btnGetRobPos = new Sunny.UI.UIButton();
+            this.txtRobR = new Sunny.UI.UITextBox();
+            this.btnGetJigPos = new Sunny.UI.UIButton();
+            this.txtJigR = new Sunny.UI.UITextBox();
             this.label4 = new Sunny.UI.UILabel();
             this.txtTargetHX = new Sunny.UI.UITextBox();
             this.txtTargetHY = new Sunny.UI.UITextBox();
             this.txtTargetHR = new Sunny.UI.UITextBox();
-            this.txtRobR = new Sunny.UI.UITextBox();
-            this.btnGetJigPos = new Sunny.UI.UIButton();
-            this.txtJigR = new Sunny.UI.UITextBox();
             this.btnCalcTool2 = new Sunny.UI.UIButton();
             this.txtTool2X = new Sunny.UI.UITextBox();
+            this.txtTool2Y = new Sunny.UI.UITextBox();
+            this.txtTool2R = new Sunny.UI.UITextBox();
+            this.btnRobptPlace = new Sunny.UI.UIButton();
+            this.txtRobptPlaceX = new Sunny.UI.UITextBox();
+            this.txtRobptPlaceY = new Sunny.UI.UITextBox();
+            this.txtRobptPlaceR = new Sunny.UI.UITextBox();
             this.groupBox4 = new Sunny.UI.UIGroupBox();
             this.btn_Reset1 = new Sunny.UI.UIButton();
             this.btn_Apply1 = new Sunny.UI.UIButton();
             this.groupBox1 = new Sunny.UI.UIGroupBox();
-            this.btn_run_vpp1 = new Sunny.UI.UIButton();
-            this.btn_run_vpp2 = new Sunny.UI.UIButton();
-            this.btn_edit_vpp1 = new Sunny.UI.UIButton();
-            this.btn_edit_vpp2 = new Sunny.UI.UIButton();
+            this.btnRunProdVpp = new Sunny.UI.UIButton();
+            this.btnRunJigVpp = new Sunny.UI.UIButton();
+            this.btnEditProdVpp = new Sunny.UI.UIButton();
+            this.btnEditJigVpp = new Sunny.UI.UIButton();
             this.chkAutoCamProdGrabbing = new Sunny.UI.UICheckBox();
             this.chkAutoCamJigGrabbing = new Sunny.UI.UICheckBox();
             this.chkOfflineimgCamProd = new Sunny.UI.UICheckBox();
@@ -80,10 +84,6 @@ namespace JxAlignVision
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.displayCCD1 = new Cognex.VisionPro.CogRecordDisplay();
             this.displayCCD2 = new Cognex.VisionPro.CogRecordDisplay();
-            this.btnRobptPlace = new Sunny.UI.UIButton();
-            this.txtRobptPlaceX = new Sunny.UI.UITextBox();
-            this.txtRobptPlaceY = new Sunny.UI.UITextBox();
-            this.txtRobptPlaceR = new Sunny.UI.UITextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -188,38 +188,6 @@ namespace JxAlignVision
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
             this.tableLayoutPanel2.Size = new System.Drawing.Size(534, 360);
             this.tableLayoutPanel2.TabIndex = 10;
-            // 
-            // txtTool2R
-            // 
-            this.txtTool2R.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTool2R.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtTool2R.Location = new System.Drawing.Point(403, 275);
-            this.txtTool2R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTool2R.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtTool2R.Multiline = true;
-            this.txtTool2R.Name = "txtTool2R";
-            this.txtTool2R.Padding = new System.Windows.Forms.Padding(5);
-            this.txtTool2R.ShowText = false;
-            this.txtTool2R.Size = new System.Drawing.Size(127, 35);
-            this.txtTool2R.TabIndex = 32;
-            this.txtTool2R.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtTool2R.Watermark = "";
-            // 
-            // txtTool2Y
-            // 
-            this.txtTool2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTool2Y.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtTool2Y.Location = new System.Drawing.Point(270, 275);
-            this.txtTool2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtTool2Y.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtTool2Y.Multiline = true;
-            this.txtTool2Y.Name = "txtTool2Y";
-            this.txtTool2Y.Padding = new System.Windows.Forms.Padding(5);
-            this.txtTool2Y.ShowText = false;
-            this.txtTool2Y.Size = new System.Drawing.Size(125, 35);
-            this.txtTool2Y.TabIndex = 32;
-            this.txtTool2Y.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtTool2Y.Watermark = "";
             // 
             // txtJigX
             // 
@@ -475,14 +443,64 @@ namespace JxAlignVision
             this.btnGetRobPos.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.btnGetRobPos.Click += new System.EventHandler(this.btnGetRobPos_Click);
             // 
+            // txtRobR
+            // 
+            this.txtRobR.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRobR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtRobR.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtRobR.Location = new System.Drawing.Point(403, 95);
+            this.txtRobR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRobR.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtRobR.Multiline = true;
+            this.txtRobR.Name = "txtRobR";
+            this.txtRobR.Padding = new System.Windows.Forms.Padding(5);
+            this.txtRobR.ShowText = false;
+            this.txtRobR.Size = new System.Drawing.Size(127, 35);
+            this.txtRobR.TabIndex = 28;
+            this.txtRobR.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRobR.Watermark = "";
+            // 
+            // btnGetJigPos
+            // 
+            this.btnGetJigPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
+            this.btnGetJigPos.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnGetJigPos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnGetJigPos.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnGetJigPos.Location = new System.Drawing.Point(3, 183);
+            this.btnGetJigPos.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnGetJigPos.Name = "btnGetJigPos";
+            this.btnGetJigPos.Size = new System.Drawing.Size(127, 39);
+            this.btnGetJigPos.TabIndex = 29;
+            this.btnGetJigPos.Text = "治具特征位";
+            this.btnGetJigPos.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnGetJigPos.Click += new System.EventHandler(this.btnGetJigPos_Click);
+            // 
+            // txtJigR
+            // 
+            this.txtJigR.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtJigR.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtJigR.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtJigR.Location = new System.Drawing.Point(403, 185);
+            this.txtJigR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtJigR.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtJigR.Multiline = true;
+            this.txtJigR.Name = "txtJigR";
+            this.txtJigR.Padding = new System.Windows.Forms.Padding(5);
+            this.txtJigR.ShowText = false;
+            this.txtJigR.Size = new System.Drawing.Size(127, 35);
+            this.txtJigR.TabIndex = 30;
+            this.txtJigR.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtJigR.Watermark = "";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label4.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(103)))), ((int)(((byte)(103)))));
             this.label4.Location = new System.Drawing.Point(3, 315);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(55, 16);
+            this.label4.Size = new System.Drawing.Size(127, 45);
             this.label4.TabIndex = 6;
             this.label4.Text = "补偿值";
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -535,55 +553,6 @@ namespace JxAlignVision
             this.txtTargetHR.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.txtTargetHR.Watermark = "";
             // 
-            // txtRobR
-            // 
-            this.txtRobR.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRobR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtRobR.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRobR.Location = new System.Drawing.Point(403, 95);
-            this.txtRobR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRobR.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtRobR.Multiline = true;
-            this.txtRobR.Name = "txtRobR";
-            this.txtRobR.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRobR.ShowText = false;
-            this.txtRobR.Size = new System.Drawing.Size(127, 35);
-            this.txtRobR.TabIndex = 28;
-            this.txtRobR.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtRobR.Watermark = "";
-            // 
-            // btnGetJigPos
-            // 
-            this.btnGetJigPos.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
-            this.btnGetJigPos.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnGetJigPos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnGetJigPos.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnGetJigPos.Location = new System.Drawing.Point(3, 183);
-            this.btnGetJigPos.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnGetJigPos.Name = "btnGetJigPos";
-            this.btnGetJigPos.Size = new System.Drawing.Size(127, 39);
-            this.btnGetJigPos.TabIndex = 29;
-            this.btnGetJigPos.Text = "治具特征位";
-            this.btnGetJigPos.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnGetJigPos.Click += new System.EventHandler(this.btnGetJigPos_Click);
-            // 
-            // txtJigR
-            // 
-            this.txtJigR.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtJigR.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtJigR.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtJigR.Location = new System.Drawing.Point(403, 185);
-            this.txtJigR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtJigR.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtJigR.Multiline = true;
-            this.txtJigR.Name = "txtJigR";
-            this.txtJigR.Padding = new System.Windows.Forms.Padding(5);
-            this.txtJigR.ShowText = false;
-            this.txtJigR.Size = new System.Drawing.Size(127, 35);
-            this.txtJigR.TabIndex = 30;
-            this.txtJigR.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtJigR.Watermark = "";
-            // 
             // btnCalcTool2
             // 
             this.btnCalcTool2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
@@ -613,6 +582,100 @@ namespace JxAlignVision
             this.txtTool2X.TabIndex = 34;
             this.txtTool2X.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             this.txtTool2X.Watermark = "";
+            // 
+            // txtTool2Y
+            // 
+            this.txtTool2Y.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTool2Y.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtTool2Y.Location = new System.Drawing.Point(270, 275);
+            this.txtTool2Y.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTool2Y.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtTool2Y.Multiline = true;
+            this.txtTool2Y.Name = "txtTool2Y";
+            this.txtTool2Y.Padding = new System.Windows.Forms.Padding(5);
+            this.txtTool2Y.ShowText = false;
+            this.txtTool2Y.Size = new System.Drawing.Size(125, 35);
+            this.txtTool2Y.TabIndex = 32;
+            this.txtTool2Y.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtTool2Y.Watermark = "";
+            // 
+            // txtTool2R
+            // 
+            this.txtTool2R.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTool2R.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtTool2R.Location = new System.Drawing.Point(403, 275);
+            this.txtTool2R.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtTool2R.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtTool2R.Multiline = true;
+            this.txtTool2R.Name = "txtTool2R";
+            this.txtTool2R.Padding = new System.Windows.Forms.Padding(5);
+            this.txtTool2R.ShowText = false;
+            this.txtTool2R.Size = new System.Drawing.Size(127, 35);
+            this.txtTool2R.TabIndex = 32;
+            this.txtTool2R.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtTool2R.Watermark = "";
+            // 
+            // btnRobptPlace
+            // 
+            this.btnRobptPlace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
+            this.btnRobptPlace.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRobptPlace.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRobptPlace.Location = new System.Drawing.Point(3, 228);
+            this.btnRobptPlace.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnRobptPlace.Name = "btnRobptPlace";
+            this.btnRobptPlace.Size = new System.Drawing.Size(127, 39);
+            this.btnRobptPlace.TabIndex = 33;
+            this.btnRobptPlace.Text = "机械手放料位";
+            this.btnRobptPlace.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRobptPlace.Click += new System.EventHandler(this.btnRobptPlace_Click);
+            // 
+            // txtRobptPlaceX
+            // 
+            this.txtRobptPlaceX.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRobptPlaceX.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtRobptPlaceX.Location = new System.Drawing.Point(137, 230);
+            this.txtRobptPlaceX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRobptPlaceX.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtRobptPlaceX.Multiline = true;
+            this.txtRobptPlaceX.Name = "txtRobptPlaceX";
+            this.txtRobptPlaceX.Padding = new System.Windows.Forms.Padding(5);
+            this.txtRobptPlaceX.ShowText = false;
+            this.txtRobptPlaceX.Size = new System.Drawing.Size(125, 35);
+            this.txtRobptPlaceX.TabIndex = 34;
+            this.txtRobptPlaceX.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRobptPlaceX.Watermark = "";
+            // 
+            // txtRobptPlaceY
+            // 
+            this.txtRobptPlaceY.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRobptPlaceY.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtRobptPlaceY.Location = new System.Drawing.Point(270, 230);
+            this.txtRobptPlaceY.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRobptPlaceY.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtRobptPlaceY.Multiline = true;
+            this.txtRobptPlaceY.Name = "txtRobptPlaceY";
+            this.txtRobptPlaceY.Padding = new System.Windows.Forms.Padding(5);
+            this.txtRobptPlaceY.ShowText = false;
+            this.txtRobptPlaceY.Size = new System.Drawing.Size(125, 35);
+            this.txtRobptPlaceY.TabIndex = 32;
+            this.txtRobptPlaceY.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRobptPlaceY.Watermark = "";
+            // 
+            // txtRobptPlaceR
+            // 
+            this.txtRobptPlaceR.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRobptPlaceR.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.txtRobptPlaceR.Location = new System.Drawing.Point(403, 230);
+            this.txtRobptPlaceR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtRobptPlaceR.MinimumSize = new System.Drawing.Size(1, 16);
+            this.txtRobptPlaceR.Multiline = true;
+            this.txtRobptPlaceR.Name = "txtRobptPlaceR";
+            this.txtRobptPlaceR.Padding = new System.Windows.Forms.Padding(5);
+            this.txtRobptPlaceR.ShowText = false;
+            this.txtRobptPlaceR.Size = new System.Drawing.Size(127, 35);
+            this.txtRobptPlaceR.TabIndex = 32;
+            this.txtRobptPlaceR.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
+            this.txtRobptPlaceR.Watermark = "";
             // 
             // groupBox4
             // 
@@ -659,10 +722,10 @@ namespace JxAlignVision
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btn_run_vpp1);
-            this.groupBox1.Controls.Add(this.btn_run_vpp2);
-            this.groupBox1.Controls.Add(this.btn_edit_vpp1);
-            this.groupBox1.Controls.Add(this.btn_edit_vpp2);
+            this.groupBox1.Controls.Add(this.btnRunProdVpp);
+            this.groupBox1.Controls.Add(this.btnRunJigVpp);
+            this.groupBox1.Controls.Add(this.btnEditProdVpp);
+            this.groupBox1.Controls.Add(this.btnEditJigVpp);
             this.groupBox1.Controls.Add(this.chkAutoCamProdGrabbing);
             this.groupBox1.Controls.Add(this.chkAutoCamJigGrabbing);
             this.groupBox1.Controls.Add(this.chkOfflineimgCamProd);
@@ -688,55 +751,59 @@ namespace JxAlignVision
             this.groupBox1.Text = "图像操作";
             this.groupBox1.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // btn_run_vpp1
+            // btnRunProdVpp
             // 
-            this.btn_run_vpp1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
-            this.btn_run_vpp1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_run_vpp1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_run_vpp1.Location = new System.Drawing.Point(6, 34);
-            this.btn_run_vpp1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_run_vpp1.Name = "btn_run_vpp1";
-            this.btn_run_vpp1.Size = new System.Drawing.Size(75, 36);
-            this.btn_run_vpp1.TabIndex = 0;
-            this.btn_run_vpp1.Text = "运行vpp1";
-            this.btn_run_vpp1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRunProdVpp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
+            this.btnRunProdVpp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRunProdVpp.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRunProdVpp.Location = new System.Drawing.Point(9, 34);
+            this.btnRunProdVpp.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnRunProdVpp.Name = "btnRunProdVpp";
+            this.btnRunProdVpp.Size = new System.Drawing.Size(109, 36);
+            this.btnRunProdVpp.TabIndex = 0;
+            this.btnRunProdVpp.Text = "运行产品VPP";
+            this.btnRunProdVpp.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRunProdVpp.Click += new System.EventHandler(this.btnRunProdVpp_Click);
             // 
-            // btn_run_vpp2
+            // btnRunJigVpp
             // 
-            this.btn_run_vpp2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
-            this.btn_run_vpp2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_run_vpp2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_run_vpp2.Location = new System.Drawing.Point(9, 123);
-            this.btn_run_vpp2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_run_vpp2.Name = "btn_run_vpp2";
-            this.btn_run_vpp2.Size = new System.Drawing.Size(75, 36);
-            this.btn_run_vpp2.TabIndex = 1;
-            this.btn_run_vpp2.Text = "运行vpp2";
-            this.btn_run_vpp2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRunJigVpp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
+            this.btnRunJigVpp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnRunJigVpp.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRunJigVpp.Location = new System.Drawing.Point(9, 123);
+            this.btnRunJigVpp.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnRunJigVpp.Name = "btnRunJigVpp";
+            this.btnRunJigVpp.Size = new System.Drawing.Size(109, 36);
+            this.btnRunJigVpp.TabIndex = 1;
+            this.btnRunJigVpp.Text = "运行治具VPP";
+            this.btnRunJigVpp.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnRunJigVpp.Click += new System.EventHandler(this.btnRunJigVpp_Click);
             // 
-            // btn_edit_vpp1
+            // btnEditProdVpp
             // 
-            this.btn_edit_vpp1.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_edit_vpp1.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_edit_vpp1.Location = new System.Drawing.Point(105, 34);
-            this.btn_edit_vpp1.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_edit_vpp1.Name = "btn_edit_vpp1";
-            this.btn_edit_vpp1.Size = new System.Drawing.Size(75, 36);
-            this.btn_edit_vpp1.TabIndex = 2;
-            this.btn_edit_vpp1.Text = "修改vpp1";
-            this.btn_edit_vpp1.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEditProdVpp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditProdVpp.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEditProdVpp.Location = new System.Drawing.Point(137, 34);
+            this.btnEditProdVpp.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnEditProdVpp.Name = "btnEditProdVpp";
+            this.btnEditProdVpp.Size = new System.Drawing.Size(103, 36);
+            this.btnEditProdVpp.TabIndex = 2;
+            this.btnEditProdVpp.Text = "修改产品VPP";
+            this.btnEditProdVpp.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEditProdVpp.Click += new System.EventHandler(this.btnEditProdVpp_Click);
             // 
-            // btn_edit_vpp2
+            // btnEditJigVpp
             // 
-            this.btn_edit_vpp2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_edit_vpp2.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btn_edit_vpp2.Location = new System.Drawing.Point(111, 123);
-            this.btn_edit_vpp2.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btn_edit_vpp2.Name = "btn_edit_vpp2";
-            this.btn_edit_vpp2.Size = new System.Drawing.Size(75, 36);
-            this.btn_edit_vpp2.TabIndex = 3;
-            this.btn_edit_vpp2.Text = "修改vpp2";
-            this.btn_edit_vpp2.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEditJigVpp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnEditJigVpp.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEditJigVpp.Location = new System.Drawing.Point(137, 123);
+            this.btnEditJigVpp.MinimumSize = new System.Drawing.Size(1, 1);
+            this.btnEditJigVpp.Name = "btnEditJigVpp";
+            this.btnEditJigVpp.Size = new System.Drawing.Size(103, 36);
+            this.btnEditJigVpp.TabIndex = 3;
+            this.btnEditJigVpp.Text = "修改治具VPP";
+            this.btnEditJigVpp.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.btnEditJigVpp.Click += new System.EventHandler(this.btnEditJigVpp_Click);
             // 
             // chkAutoCamProdGrabbing
             // 
@@ -745,7 +812,7 @@ namespace JxAlignVision
             this.chkAutoCamProdGrabbing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkAutoCamProdGrabbing.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chkAutoCamProdGrabbing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(103)))), ((int)(((byte)(103)))));
-            this.chkAutoCamProdGrabbing.Location = new System.Drawing.Point(208, 42);
+            this.chkAutoCamProdGrabbing.Location = new System.Drawing.Point(253, 42);
             this.chkAutoCamProdGrabbing.MinimumSize = new System.Drawing.Size(1, 1);
             this.chkAutoCamProdGrabbing.Name = "chkAutoCamProdGrabbing";
             this.chkAutoCamProdGrabbing.Size = new System.Drawing.Size(126, 21);
@@ -759,7 +826,7 @@ namespace JxAlignVision
             this.chkAutoCamJigGrabbing.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkAutoCamJigGrabbing.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chkAutoCamJigGrabbing.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(103)))), ((int)(((byte)(103)))));
-            this.chkAutoCamJigGrabbing.Location = new System.Drawing.Point(208, 131);
+            this.chkAutoCamJigGrabbing.Location = new System.Drawing.Point(253, 131);
             this.chkAutoCamJigGrabbing.MinimumSize = new System.Drawing.Size(1, 1);
             this.chkAutoCamJigGrabbing.Name = "chkAutoCamJigGrabbing";
             this.chkAutoCamJigGrabbing.Size = new System.Drawing.Size(126, 21);
@@ -773,7 +840,7 @@ namespace JxAlignVision
             this.chkOfflineimgCamProd.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkOfflineimgCamProd.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chkOfflineimgCamProd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(103)))), ((int)(((byte)(103)))));
-            this.chkOfflineimgCamProd.Location = new System.Drawing.Point(348, 42);
+            this.chkOfflineimgCamProd.Location = new System.Drawing.Point(393, 42);
             this.chkOfflineimgCamProd.MinimumSize = new System.Drawing.Size(1, 1);
             this.chkOfflineimgCamProd.Name = "chkOfflineimgCamProd";
             this.chkOfflineimgCamProd.Size = new System.Drawing.Size(126, 21);
@@ -787,7 +854,7 @@ namespace JxAlignVision
             this.chkOfflineImgCamJig.Cursor = System.Windows.Forms.Cursors.Hand;
             this.chkOfflineImgCamJig.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chkOfflineImgCamJig.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(103)))), ((int)(((byte)(103)))));
-            this.chkOfflineImgCamJig.Location = new System.Drawing.Point(351, 131);
+            this.chkOfflineImgCamJig.Location = new System.Drawing.Point(396, 131);
             this.chkOfflineImgCamJig.MinimumSize = new System.Drawing.Size(1, 1);
             this.chkOfflineImgCamJig.Name = "chkOfflineImgCamJig";
             this.chkOfflineImgCamJig.Size = new System.Drawing.Size(126, 21);
@@ -894,8 +961,8 @@ namespace JxAlignVision
             // 
             this.tableLayoutPanel1.ColumnCount = 1;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.displayCCD1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.displayCCD2, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.displayCCD1, 0, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -921,7 +988,7 @@ namespace JxAlignVision
             this.displayCCD1.Name = "displayCCD1";
             this.displayCCD1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("displayCCD1.OcxState")));
             this.displayCCD1.Size = new System.Drawing.Size(512, 347);
-            this.displayCCD1.TabIndex = 1;
+            this.displayCCD1.TabIndex = 3;
             // 
             // displayCCD2
             // 
@@ -939,77 +1006,15 @@ namespace JxAlignVision
             this.displayCCD2.Name = "displayCCD2";
             this.displayCCD2.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("displayCCD2.OcxState")));
             this.displayCCD2.Size = new System.Drawing.Size(512, 348);
-            this.displayCCD2.TabIndex = 2;
+            this.displayCCD2.TabIndex = 4;
             // 
-            // btnRobptPlace
-            // 
-            this.btnRobptPlace.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(68)))), ((int)(((byte)(139)))));
-            this.btnRobptPlace.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnRobptPlace.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRobptPlace.Location = new System.Drawing.Point(3, 228);
-            this.btnRobptPlace.MinimumSize = new System.Drawing.Size(1, 1);
-            this.btnRobptPlace.Name = "btnRobptPlace";
-            this.btnRobptPlace.Size = new System.Drawing.Size(127, 39);
-            this.btnRobptPlace.TabIndex = 33;
-            this.btnRobptPlace.Text = "机械手放料位";
-            this.btnRobptPlace.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.btnRobptPlace.Click += new System.EventHandler(this.btnRobptPlace_Click);
-            // 
-            // txtRobptPlaceX
-            // 
-            this.txtRobptPlaceX.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRobptPlaceX.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRobptPlaceX.Location = new System.Drawing.Point(137, 230);
-            this.txtRobptPlaceX.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRobptPlaceX.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtRobptPlaceX.Multiline = true;
-            this.txtRobptPlaceX.Name = "txtRobptPlaceX";
-            this.txtRobptPlaceX.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRobptPlaceX.ShowText = false;
-            this.txtRobptPlaceX.Size = new System.Drawing.Size(125, 35);
-            this.txtRobptPlaceX.TabIndex = 34;
-            this.txtRobptPlaceX.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtRobptPlaceX.Watermark = "";
-            // 
-            // txtRobptPlaceY
-            // 
-            this.txtRobptPlaceY.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRobptPlaceY.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRobptPlaceY.Location = new System.Drawing.Point(270, 230);
-            this.txtRobptPlaceY.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRobptPlaceY.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtRobptPlaceY.Multiline = true;
-            this.txtRobptPlaceY.Name = "txtRobptPlaceY";
-            this.txtRobptPlaceY.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRobptPlaceY.ShowText = false;
-            this.txtRobptPlaceY.Size = new System.Drawing.Size(125, 35);
-            this.txtRobptPlaceY.TabIndex = 32;
-            this.txtRobptPlaceY.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtRobptPlaceY.Watermark = "";
-            // 
-            // txtRobptPlaceR
-            // 
-            this.txtRobptPlaceR.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtRobptPlaceR.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.txtRobptPlaceR.Location = new System.Drawing.Point(403, 230);
-            this.txtRobptPlaceR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txtRobptPlaceR.MinimumSize = new System.Drawing.Size(1, 16);
-            this.txtRobptPlaceR.Multiline = true;
-            this.txtRobptPlaceR.Name = "txtRobptPlaceR";
-            this.txtRobptPlaceR.Padding = new System.Windows.Forms.Padding(5);
-            this.txtRobptPlaceR.ShowText = false;
-            this.txtRobptPlaceR.Size = new System.Drawing.Size(127, 35);
-            this.txtRobptPlaceR.TabIndex = 32;
-            this.txtRobptPlaceR.TextAlignment = System.Drawing.ContentAlignment.MiddleLeft;
-            this.txtRobptPlaceR.Watermark = "";
-            // 
-            // Frm_Debug
+            // frmEolDebug
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
             this.ClientSize = new System.Drawing.Size(1056, 742);
             this.Controls.Add(this.splitContainer1);
-            this.Name = "Frm_Debug";
+            this.Name = "frmEolDebug";
             this.Text = "Eol  模板调试";
             this.ZoomScaleRect = new System.Drawing.Rectangle(15, 15, 903, 616);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Frm_Debug_FormClosing);
@@ -1034,13 +1039,11 @@ namespace JxAlignVision
         private System.Windows.Forms.SplitContainer splitContainer1;
         private Sunny.UI.UIButton btn_Apply1;
         private Sunny.UI.UIButton btn_Reset1;
-        private Sunny.UI.UIButton btn_edit_vpp2;
-        private Sunny.UI.UIButton btn_edit_vpp1;
-        private Sunny.UI.UIButton btn_run_vpp2;
-        private Sunny.UI.UIButton btn_run_vpp1;
+        private Sunny.UI.UIButton btnEditJigVpp;
+        private Sunny.UI.UIButton btnEditProdVpp;
+        private Sunny.UI.UIButton btnRunJigVpp;
+        private Sunny.UI.UIButton btnRunProdVpp;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private Cognex.VisionPro.CogRecordDisplay displayCCD1;
-        private Cognex.VisionPro.CogRecordDisplay displayCCD2;
         private Sunny.UI.UICheckBox chkOfflineImgCamJig;
         private Sunny.UI.UICheckBox chkOfflineimgCamProd;
         private Sunny.UI.UICheckBox chkAutoCamJigGrabbing;
@@ -1088,5 +1091,7 @@ namespace JxAlignVision
         private Sunny.UI.UITextBox txtRobptPlaceX;
         private Sunny.UI.UITextBox txtRobptPlaceY;
         private Sunny.UI.UITextBox txtRobptPlaceR;
+        private Cognex.VisionPro.CogRecordDisplay displayCCD2;
+        private Cognex.VisionPro.CogRecordDisplay displayCCD1;
     }
 }

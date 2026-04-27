@@ -33,6 +33,7 @@ namespace JxAlignVision
                 _plcListenThread = new Thread(PlcListenThread);
                 _plcListenThread.Start();
                 cboCam.SelectedIndex = 0;
+                cboPlcSel.SelectedIndex = 0;
             });
         }
 
@@ -221,6 +222,23 @@ namespace JxAlignVision
         {
             ModLogger.Operate("打开相机1", () => {
                 _cam.Open(Config.App.WpcCam2);
+                switch(cboCam.SelectedIndex) {
+                    case 0:
+                        _cam.Open(Config.App.WpcCam1);
+                    break;
+                    case 1:
+                        _cam.Open(Config.App.WpcCam2);
+                    break;
+                    case 2:
+                        _cam.Open(Config.App.EolPordCam);
+                        break;
+                    case 3:
+                        _cam.Open(Config.App.EolJigCam);
+                        break;
+                    case 4:
+                        _cam.Open(Config.App.EolCodeSignCam);
+                        break;
+                }
                 tbCamExposureTime.Text = $"{_cam.CamExposureTime}";
                 tbCamGain.Text = $"{_cam.CamGain}";
             });
@@ -230,7 +248,24 @@ namespace JxAlignVision
         {
             ModLogger.Operate("关闭相机1", () => {
                 ckb_AutoCam1Grabbing.Checked = false;
-                Device.WpcCam1.Close();
+                //Device.WpcCam1.Close();
+                switch(cboCam.SelectedIndex) {
+                    case 0:
+                        Device.WpcCam1.Close();
+                    break;
+                    case 1:
+                        Device.WpcCam2.Close();
+                    break;
+                    case 2:
+                        Device.EolProdCam.Close();
+                        break;
+                    case 3:
+                        Device.EolJigCam.Close();
+                        break;
+                    case 4:
+                        Device.EolCsCam.Close();
+                        break;
+                }
             });
         }
 

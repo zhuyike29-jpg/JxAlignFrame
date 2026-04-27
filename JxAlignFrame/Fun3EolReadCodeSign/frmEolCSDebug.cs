@@ -40,7 +40,7 @@ namespace JxAlignVision
 
                 var obj = _eolSignReadCode;
                 BindEditValue.Bind(txtMinGray, obj, nameof(obj.minGray));
-                BindEditValue.Bind(txtMinGray, obj, nameof(obj.regionCnt));
+                BindEditValue.Bind(txtRegionCnt, obj, nameof(obj.regionCnt));
             });
         }
 
@@ -68,7 +68,7 @@ namespace JxAlignVision
             }
         }
 
-        bool RunVppSignTool(int camnum, MyVision tool, UICheckBox ckb_offlineimage,Cognex.VisionPro.CogRecordDisplay display)
+        bool RunVppSignTool(MyVision tool, UICheckBox ckb_offlineimage,Cognex.VisionPro.CogRecordDisplay display)
         {
             //获取图像
             Cognex.VisionPro.CogImage8Grey img = null;
@@ -96,13 +96,13 @@ namespace JxAlignVision
             display.Image = null;
             display.Record = null;
             display.Image = img;
-            var result =  tool.GetProdSign(img,Recipe.TrainWpcSignReadCode1.minGray,Recipe.TrainWpcSignReadCode1.regionCnt);
+            var result =  tool.GetProdSign(img,_eolSignReadCode.minGray, _eolSignReadCode.regionCnt);
             display.Record = tool.GetRecord();
             return result;
 
         }
 
-        string RunVppCodeTool(int camnum, MyVision tool, UICheckBox ckb_offlineimage, Cognex.VisionPro.CogRecordDisplay display)
+        string RunVppCodeTool(MyVision tool, UICheckBox ckb_offlineimage, Cognex.VisionPro.CogRecordDisplay display)
         {
             //获取图像
             Cognex.VisionPro.CogImage8Grey img = null;
@@ -149,7 +149,7 @@ namespace JxAlignVision
         private void btnRunVppSign_Click(object sender, EventArgs e)
         {
             ModLogger.Operate("运行vpp 点亮", () => {
-               var result =  RunVppSignTool(1, _sign, ckbOfflineImgCam1, displayCCD1);
+               var result =  RunVppSignTool(_sign,ckbOfflineImgCam1, displayCCD1);
                 if (!result) { UpdateProcess("产品未点亮！", false); }
                 else { UpdateProcess("产品点亮！"); }
             });
@@ -165,7 +165,7 @@ namespace JxAlignVision
         private void btnRunVppCode_Click(object sender, EventArgs e)
         {
             ModLogger.Operate("运行vpp 读码", () => {
-                var result = RunVppCodeTool(1, _readCode, ckbOfflineImgCam1, displayCCD1);
+                var result = RunVppCodeTool(_readCode, ckbOfflineImgCam1, displayCCD1);
                 if (result != "") UpdateProcess($"产品码：{result} ", false);
                 else { UpdateProcess("识别失败",false); }
             });

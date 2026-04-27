@@ -125,7 +125,7 @@
             this.Tab.Margin = new System.Windows.Forms.Padding(0);
             this.Tab.Name = "Tab";
             this.Tab.SelectedIndex = 0;
-            this.Tab.Size = new System.Drawing.Size(1089, 575);
+            this.Tab.Size = new System.Drawing.Size(1237, 747);
             this.Tab.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.Tab.TabIndex = 0;
             this.Tab.TipsFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -137,7 +137,7 @@
             this.tabPage1.Location = new System.Drawing.Point(0, 40);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(0);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Size = new System.Drawing.Size(1089, 535);
+            this.tabPage1.Size = new System.Drawing.Size(1237, 707);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Plc";
             // 
@@ -157,7 +157,7 @@
             this.panel1.Margin = new System.Windows.Forms.Padding(0);
             this.panel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1089, 535);
+            this.panel1.Size = new System.Drawing.Size(1237, 707);
             this.panel1.TabIndex = 0;
             this.panel1.Text = null;
             this.panel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -174,7 +174,7 @@
             this.uiPanel1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.uiPanel1.MinimumSize = new System.Drawing.Size(1, 1);
             this.uiPanel1.Name = "uiPanel1";
-            this.uiPanel1.Size = new System.Drawing.Size(1082, 82);
+            this.uiPanel1.Size = new System.Drawing.Size(1230, 82);
             this.uiPanel1.TabIndex = 77;
             this.uiPanel1.Text = null;
             this.uiPanel1.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -262,7 +262,7 @@
             this.panel_Plc_XYR.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel_Plc_XYR.MinimumSize = new System.Drawing.Size(1, 1);
             this.panel_Plc_XYR.Name = "panel_Plc_XYR";
-            this.panel_Plc_XYR.Size = new System.Drawing.Size(1082, 112);
+            this.panel_Plc_XYR.Size = new System.Drawing.Size(1230, 112);
             this.panel_Plc_XYR.TabIndex = 76;
             this.panel_Plc_XYR.Text = null;
             this.panel_Plc_XYR.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -521,7 +521,7 @@
             this.panel_Plc_ProductAlign.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel_Plc_ProductAlign.MinimumSize = new System.Drawing.Size(1, 1);
             this.panel_Plc_ProductAlign.Name = "panel_Plc_ProductAlign";
-            this.panel_Plc_ProductAlign.Size = new System.Drawing.Size(1078, 101);
+            this.panel_Plc_ProductAlign.Size = new System.Drawing.Size(1226, 101);
             this.panel_Plc_ProductAlign.TabIndex = 71;
             this.panel_Plc_ProductAlign.Text = null;
             this.panel_Plc_ProductAlign.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -689,7 +689,7 @@
             this.tabPage2.Controls.Add(this.splitContainer1);
             this.tabPage2.Location = new System.Drawing.Point(0, 40);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(1089, 535);
+            this.tabPage2.Size = new System.Drawing.Size(1237, 707);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "相机";
             // 
@@ -716,7 +716,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.cogdispccd1);
-            this.splitContainer1.Size = new System.Drawing.Size(1089, 535);
+            this.splitContainer1.Size = new System.Drawing.Size(1237, 707);
             this.splitContainer1.SplitterDistance = 358;
             this.splitContainer1.SplitterWidth = 11;
             this.splitContainer1.TabIndex = 0;
@@ -956,7 +956,7 @@
             this.cogdispccd1.MouseWheelSensitivity = 1D;
             this.cogdispccd1.Name = "cogdispccd1";
             this.cogdispccd1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("cogdispccd1.OcxState")));
-            this.cogdispccd1.Size = new System.Drawing.Size(720, 535);
+            this.cogdispccd1.Size = new System.Drawing.Size(868, 707);
             this.cogdispccd1.TabIndex = 0;
             // 
             // timer1
@@ -974,7 +974,7 @@
             this.panel2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.panel2.MinimumSize = new System.Drawing.Size(1, 1);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1089, 575);
+            this.panel2.Size = new System.Drawing.Size(1237, 747);
             this.panel2.TabIndex = 1;
             this.panel2.Text = null;
             this.panel2.TextAlignment = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1050,7 +1050,7 @@
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(239)))), ((int)(((byte)(248)))));
-            this.ClientSize = new System.Drawing.Size(1089, 610);
+            this.ClientSize = new System.Drawing.Size(1237, 782);
             this.Controls.Add(this.panel2);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
