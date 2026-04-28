@@ -6,9 +6,12 @@ using Sunny.UI;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -52,16 +55,16 @@ namespace JxAlignVision
                     frmCheck.AddText("加载Plc", () => {
                         //传入心跳点位和触发点位 
                         //WPC PLC
-                        List<string> lstHeartBeatWpc = new List<string>() { Config.App.WpcPlcHeartDog };
-                        List<string> lstTriggersWpc = new List<string>() { Config.App.WpcPlcProdCodeTrigger1, Config.App.WpcPlcProdCodeTrigger2,Config.App.WpcPlcProdSignTrigger1,Config.App.WpcPlcProdSignTrigger2};
+                        List<string> lstHeartBeatWpc, lstTriggersWpc;
+                        AutoExtractAddresses(Config.App,  out lstHeartBeatWpc, out lstTriggersWpc, "CWPC", "BWPC");
                         Device.WpcReadCodeSignPlc = new WpcReadCodeSignPlc(PlcFactory.CreatePlc(Config.App.WpcPlcType, Config.App.WpcPlcIp, Config.App.WpcPlcPort, Config.App.WpcMxStation, lstHeartBeatWpc, lstTriggersWpc, ModLogger.LogCommumication));
                         //EOL PLC
-                        List<string> lstHeartBeatEol = new List<string>() { Config.App.EolPlcHeartDog };
-                        List<string> lstTriggersEol = new List<string>() { Config.App.EolJigAlignTrigger, Config.App.EolProdAlignTrigger, Config.App.EolCalcAlignTrigger};
+                        List<string> lstHeartBeatEol, lstTriggersEol;
+                        AutoExtractAddresses(Config.App, out lstHeartBeatEol, out lstTriggersEol, "CEOL","BEOL");
                         Device.EolLoadPlc = new EolLoadPlc(PlcFactory.CreatePlc(Config.App.EolPlcType, Config.App.EolPlcIp, Config.App.EolPlcPort, Config.App.EolMxStation, lstHeartBeatEol, lstTriggersEol, ModLogger.LogCommumication));
                         //EOL 读码&点亮PLC
-                        List<string> lstHeartBeatEolCs = new List<string>() { Config.App.EolCsPlcHeartDog };
-                        List<string> lstTriggersEolCs = new List<string>() { Config.App.EolPlcProductSignTrigger, Config.App.EolPlcProductCodeTrigger };
+                        List<string> lstHeartBeatEolCs, lstTriggersEolCs;
+                        AutoExtractAddresses(Config.App,  out lstHeartBeatEolCs, out lstTriggersEolCs, "CEOLCS", "BEOLCS");
                         Device.EolReadCodeSignPlc = new EolReadCodeSignPlc(PlcFactory.CreatePlc(Config.App.EolCsPlcType, Config.App.EolCsPlcIp, Config.App.EolCsPort, Config.App.EolCsMxStation, lstHeartBeatEolCs, lstTriggersEolCs, ModLogger.LogCommumication));
 
                         if (Config.App.IsAutoConnectDevice)
@@ -284,6 +287,68 @@ namespace JxAlignVision
             display.StaticGraphics.Clear();
             display.Invalidate();
         }
+
+        // 正则表达式：兼容英文 '[' 和中文 '【'，精确提取中括号内的纯字母组合
+        private static readonly Regex PrefixRegex = new Regex(@"^[\[【]([A-Za-z]+)", RegexOptions.Compiled);
+
+        /// <summary>
+        /// 自动提取指定前缀的 PLC 地址 (支持传入多个完整前缀，精确匹配)
+        /// </summary>
+        /// <param name="configObj">配置对象，如 Config.App</param>
+        /// <param name="heartbeats">传出的心跳地址列表</param>
+        /// <param name="triggers">传出的触发地址列表</param>
+        /// <param name="targetModules">需要匹配的一个或多个完整字母前缀 (例如 "BWPC", "CWPC")</param>
+        public static void AutoExtractAddresses(object configObj, out List<string> heartbeats, out List<string> triggers, params string[] targetModules)
+        {
+            // 【关键修复】带有 out 的参数必须在方法最开头分配内存，否则传出会为空！
+            heartbeats = new List<string>();
+            triggers = new List<string>();
+
+            // 如果没有传入配置对象，或者没有传入需要寻找的前缀，直接返回
+            if (configObj == null || targetModules == null || targetModules.Length == 0) return;
+
+            PropertyInfo[] properties = configObj.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static);
+
+            foreach (var prop in properties)
+            {
+                if (prop.PropertyType == typeof(string))
+                {
+                    // 获取 DisplayName 特性
+                    var attributes = prop.GetCustomAttributes(typeof(DisplayNameAttribute), false);
+                    if (attributes.Length > 0)
+                    {
+                        var displayAttr = attributes[0] as DisplayNameAttribute;
+                        string displayName = displayAttr.DisplayName;
+
+                        // 正则匹配：例如从 "[BWPC09]心跳点位" 中抓取出 "BWPC"
+                        Match match = PrefixRegex.Match(displayName);
+                        if (match.Success)
+                        {
+                            string currentModule = match.Groups[1].Value;
+
+                            // 【核心判断】: 精确判断提取出的前缀，是否存在于我们传入的字符串数组中 (忽略大小写)
+                            // 坚决不偷懒，只有严格等于数组里的某个元素才放行！
+                            if (targetModules.Contains(currentModule, StringComparer.OrdinalIgnoreCase))
+                            {
+                                string addressValue = prop.GetValue(configObj) as string;
+                                if (string.IsNullOrWhiteSpace(addressValue)) continue;
+
+                                // 功能分类归属
+                                if (displayName.Contains("心跳"))
+                                {
+                                    heartbeats.Add(addressValue);
+                                }
+                                else if (displayName.Contains("触发") || displayName.Contains("请求"))
+                                {
+                                    triggers.Add(addressValue);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 }

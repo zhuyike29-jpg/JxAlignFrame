@@ -132,7 +132,7 @@ namespace JxAlignVision
 
 
         [Category("B3-EOLCS设备"), DisplayName("[BEOLCS01]EOL读码&点亮相机"), Description("")]
-        public string EolCodeSignCam { get; set; } = "1";
+        public string EolCodeSignCam { get; set; } = "1";  
         [Category("B3-EOLCS设备"), DisplayName("[BEOLCS02]EOL读码&点亮相机图像旋转"), Description("")]
         public RotateFlipType EolCodeSignSysImgRotateFilp { get; set; } = RotateFlipType.RotateNoneFlipNone;
         [Category("B3-EOLCS设备"), DisplayName("[BEOLCS03]WPC PLC通讯类型"), Description("")]
@@ -147,7 +147,7 @@ namespace JxAlignVision
         public string EolCsPlcHeartDog { get; set; } = "D9600";
 
 
-        [Category("C1-WPC Plc点位设置"), DisplayName("[CWPC01]点亮触发1"), Description("")]
+        [Category("C1-WPC Plc点位设置"), DisplayName("[CWPC01]点亮触发1"), Description(""),]
         public string WpcPlcProdSignTrigger1 { get; set; } = "D9000";
         [Category("C1-WPC Plc点位设置"), DisplayName("[CWPC02]点亮结果1"), Description("")]
         public string WpcPlcProdSignResult1 { get; set; } = "D9000";
@@ -168,15 +168,15 @@ namespace JxAlignVision
         [Category("C1-WPC Plc点位设置"), DisplayName("[CWPC10]读码写入地址2"), Description("")]
         public string WpcPlcProdCodeAds2 { get; set; } = "D9000";
 
-        [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL01]产品对位信号"), Description("")]
+        [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL01]产品对位触发信号"), Description("")]
         public string EolProdAlignTrigger { get; set; } = "D9000";
         [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL02]产品对位结果"), Description("")]
         public string EolProdAlignResult { get; set; } = "D9001";
-        [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL03]治具对位信号"), Description("")]
+        [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL03]治具对位触发信号"), Description("")]
         public string EolJigAlignTrigger { get; set; } = "D9000";
         [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL04]治具对位结果"), Description("")]
         public string EolJigAlignResult { get; set; } = "D9001";
-        [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL05]联合计算信号"), Description("")]
+        [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL05]联合计算触发信号"), Description("")]
         public string EolCalcAlignTrigger { get; set; } = "D9000";
         [Category("C2-EOL Plc点位设置"), DisplayName("[CEOL06]联合计算结果"), Description("")]
         public string EolCalcAlignResult { get; set; } = "D9001";
