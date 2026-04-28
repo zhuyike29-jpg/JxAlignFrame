@@ -148,8 +148,15 @@ namespace JxAlignVision
         {
             OperateResult<int[]> res;
             lock (_session.SyncLock) { res = _session.Client.ReadInt32(address, length); }
-            if (res.IsSuccess) _log?.Info($"[Hsl PLC读取数组] 地址:{address}, 长度:{length} 成功");
-            else _log?.Error($"[Hsl PLC读取数组异常] 地址:{address}, 错误:{res.Message}");
+            if (res.IsSuccess)
+            {
+                string valuesStr = res.Content != null ? string.Join(", ", res.Content) : "null";
+                _log?.Info($"[Hsl PLC读取数组] 地址:{address}, 长度:{length}, 值:[{valuesStr}]");
+            }
+            else 
+            { 
+                _log?.Error($"[Hsl PLC读取数组异常] 地址:{address}, 错误:{res.Message}"); 
+            }
             return res;
         }
 
@@ -166,8 +173,15 @@ namespace JxAlignVision
         {
             OperateResult res;
             lock (_session.SyncLock) { res = _session.Client.Write(address, values); }
-            if (res.IsSuccess) _log?.Info($"[Hsl PLC写入数组] 地址:{address}, 长度:{values?.Length} 成功");
-            else _log?.Error($"[Hsl PLC写入数组异常] 地址:{address}, 错误:{res.Message}");
+            if (res.IsSuccess)
+            {
+                string valuesStr = values != null ? string.Join(", ", values) : "null";
+                _log?.Info($"[Hsl PLC写入数组] 地址:{address}, 长度:{values?.Length}, 值:[{valuesStr}] 成功");
+            }
+            else
+            {
+                _log?.Error($"[Hsl PLC写入数组异常] 地址:{address}, 错误:{res.Message}");
+            }
             return res;
         }
 

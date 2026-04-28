@@ -159,8 +159,16 @@ namespace JxAlignVision
 
             OperateResult<int[]> res = (ret == 0) ? OperateResult.CreateSuccessResult(buffer) : new OperateResult<int[]>($"ReadInt32Array Error: 0x{ret:X8}");
 
-            if (res.IsSuccess) _log?.Info($"[MX PLC读取数组] 地址:{address}, 长度:{length} 成功");
-            else _log?.Error($"[MX PLC读取数组异常] 地址:{address}, 错误:{res.Message}");
+            if (res.IsSuccess)
+            {
+                // [修改] 增加数组值打印
+                string valStr = buffer != null ? string.Join(", ", buffer) : "null";
+                _log?.Info($"[MX PLC读取数组] 地址:{address}, 长度:{length}, 值:[{valStr}] 成功");
+            }
+            else
+            {
+                _log?.Error($"[MX PLC读取数组异常] 地址:{address}, 错误:{res.Message}");
+            }
             return res;
         }
 
@@ -183,9 +191,17 @@ namespace JxAlignVision
 
             OperateResult res = (ret == 0) ? OperateResult.CreateSuccessResult() : new OperateResult($"WriteInt32Array Error: 0x{ret:X8}");
 
-            if (res.IsSuccess) _log?.Info($"[MX PLC写入数组] 地址:{address}, 长度:{values?.Length} 成功");
-            else _log?.Error($"[MX PLC写入数组异常] 地址:{address}, 错误:{res.Message}");
-            return res;
+            if (ret == 0)
+            {
+                // [修改] 增加写入值打印
+                string valStr = values != null ? string.Join(", ", values) : "null";
+                _log?.Info($"[MX PLC写入数组] 地址:{address}, 长度:{values?.Length}, 值:[{valStr}] 成功");
+            }
+            else
+            {
+                _log?.Error($"[MX PLC写入数组异常] 地址:{address}, 错误:0x{ret:X8}");
+            }
+            return (ret == 0) ? OperateResult.CreateSuccessResult() : new OperateResult($"WriteInt32Array Error: 0x{ret:X8}");
         }
 
         // ==================== 布尔 (Bool) 与 字符串 读写 ====================

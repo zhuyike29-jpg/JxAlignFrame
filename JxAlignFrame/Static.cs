@@ -86,6 +86,15 @@ namespace JxAlignVision
                             {
                                 UIMessageBox.ShowError($"PLC{Config.App.EolPlcIp}:{Config.App.EolMxStation}连接失败，{ex.Message}");
                             }
+
+                            try
+                            {
+                                Device.EolReadCodeSignPlc.Open();
+                            }
+                            catch (Exception ex)
+                            {
+                                UIMessageBox.ShowError($"PLC{Config.App.EolCsPlcIp}:{Config.App.EolCsMxStation}连接失败，{ex.Message}");
+                            }
                         }
                     });
 
